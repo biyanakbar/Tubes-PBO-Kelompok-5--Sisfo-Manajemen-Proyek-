@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Program%20Tubes%20PBO/TubesPbo/src/view/tambahTugas.java</file>
-            <file>file:/D:/Program%20Tubes%20PBO/TubesPbo/src/view/menuProyek.java</file>
-            <file>file:/D:/Program%20Tubes%20PBO/TubesPbo/src/tubespbo/Application.java</file>
-            <file>file:/D:/Program%20Tubes%20PBO/TubesPbo/src/controller/Controller.java</file>
-            <file>file:/D:/Program%20Tubes%20PBO/TubesPbo/src/view/ViewConsole.java</file>
-            <file>file:/D:/Program%20Tubes%20PBO/TubesPbo/src/view/cariProyek.java</file>
+            <file>file:/C:/Users/biyan/Documents/GitHub/Tubes-PBO-Kelompok-5--Sisfo-Manajemen-Proyek-/src/controller/Controller.java</file>
+            <file>file:/C:/Users/biyan/Documents/GitHub/Tubes-PBO-Kelompok-5--Sisfo-Manajemen-Proyek-/src/view/menuProyek.java</file>
+            <file>file:/C:/Users/biyan/Documents/GitHub/Tubes-PBO-Kelompok-5--Sisfo-Manajemen-Proyek-/src/view/hapusTugas.java</file>
+            <file>file:/C:/Users/biyan/Documents/GitHub/Tubes-PBO-Kelompok-5--Sisfo-Manajemen-Proyek-/src/view/notifTambahTugas.java</file>
+            <file>file:/C:/Users/biyan/Documents/GitHub/Tubes-PBO-Kelompok-5--Sisfo-Manajemen-Proyek-/src/view/ViewConsole.java</file>
         </group>
     </open-files>
 </project-private>

@@ -7,6 +7,7 @@ package view;
 
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 /**
  *
@@ -31,11 +32,13 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
     private void initComponents() {
 
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textProgrammer = new javax.swing.JTextField();
         btnLihatTugas = new javax.swing.JButton();
         btnUpdateTugas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        btnCek = new javax.swing.JButton();
+        txNotif = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,12 +46,18 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
         jLabel6.setText("Menu Programmer");
 
         btnLihatTugas.setText("Lihat Tugas");
+        btnLihatTugas.setEnabled(false);
 
         btnUpdateTugas.setText("Update Tugas");
+        btnUpdateTugas.setEnabled(false);
 
         jLabel1.setText("Nama Programmer");
 
         btnBack.setText("<< Back");
+
+        btnCek.setText("Cek");
+
+        txNotif.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,16 +68,24 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
                 .addComponent(jLabel6)
                 .addGap(113, 113, 113))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnLihatTugas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnUpdateTugas, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(37, 37, 37)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnBack)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnLihatTugas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnUpdateTugas, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnBack)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(37, 37, 37)
+                                .addComponent(textProgrammer, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txNotif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCek)))))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -79,8 +96,12 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                    .addComponent(textProgrammer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCek)
+                    .addComponent(txNotif))
+                .addGap(14, 14, 14)
                 .addComponent(btnLihatTugas)
                 .addGap(18, 18, 18)
                 .addComponent(btnUpdateTugas)
@@ -98,11 +119,13 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnCek;
     private javax.swing.JButton btnLihatTugas;
     private javax.swing.JButton btnUpdateTugas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField textProgrammer;
+    private javax.swing.JLabel txNotif;
     // End of variables declaration//GEN-END:variables
 
     public Object getBtnLihatTugas() {
@@ -117,9 +140,36 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
         return btnBack;
     }
 
+    public Object getBtnCek() {
+        return btnCek;
+    }
+
+    public String getTextManajer() {
+        return textProgrammer.getText();
+    }
+    
+    public void setTxNotif(String s){
+        txNotif.setText(s);
+    }
+    
+    public void setEnableBtn(){
+        btnLihatTugas.setEnabled(true);
+        btnUpdateTugas.setEnabled(true);
+    }
+    
+    public void setDisableBtn(){
+        btnLihatTugas.setEnabled(false);
+        btnUpdateTugas.setEnabled(false);
+    }
+    
+    public void setDisableTextProgrammer(){
+        textProgrammer.setEditable(false);
+    }
+
     public void addListener(ActionListener e){
         btnLihatTugas.addActionListener(e);
         btnUpdateTugas.addActionListener(e);
         btnBack.addActionListener(e);
+        btnCek.addActionListener(e);
     }
 }

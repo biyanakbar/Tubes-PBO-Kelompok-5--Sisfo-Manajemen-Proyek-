@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -137,6 +138,10 @@ public class cariProyek extends javax.swing.JFrame implements View{
     
     public void setEnableNext(){
         btnNext.setEnabled(true);
+    }
+    
+    public void setDisableTxProyek(){
+        textProyek.setEditable(false);
     }
     
     

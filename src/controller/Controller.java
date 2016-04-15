@@ -12,6 +12,8 @@ import tubespbo.Application;
 import tubespbo.ManajerProyek;
 import tubespbo.Proyek;
 import view.*;
+import javax.swing.JOptionPane;
+import tubespbo.Programmer;
 
 /**
  *
@@ -21,6 +23,7 @@ public class Controller implements ActionListener{
     private Application app;
     private View view;
     String namaManager;
+    Proyek nmP;
     
     public Controller(Application app) {
         this.app = app;
@@ -72,7 +75,8 @@ public class Controller implements ActionListener{
                 gLihatProgrammer.setVisible(true);
                 gLihatProgrammer.addListener(this);
                 m.dispose();
-                view = gLihatProgrammer;  
+                view = gLihatProgrammer; 
+                gLihatProgrammer.setTxAreaProgrammer(app.viewProgrammer());
             }else if(source.equals(m.getBtnMenuManPro())){
                 /*
                 pindah view menuManajerProyek
@@ -92,7 +96,9 @@ public class Controller implements ActionListener{
                 m.dispose();
                 view = gMenuProgrammer;  
             }
-        } else if (view instanceof insertManajerProyek){
+        }
+        
+        else if (view instanceof insertManajerProyek){
             insertManajerProyek gMan = (insertManajerProyek) view;
             if(source.equals(gMan.getBtnBack())){
                 /*
@@ -112,12 +118,19 @@ public class Controller implements ActionListener{
                 String ttl = gMan.getTextTTL();
                 String email = gMan.getTextEmail();
                 String noTelp = gMan.getTextTelp();
-                
+
                 app.insertManajerProyek(nama, ttl, alamat, noTelp, email);
-                
                 gMan.reset();
+                notifBerhasilManajerProyek gNotif = new notifBerhasilManajerProyek();
+                gNotif.setVisible(true);
+                gNotif.addListener(this);
+                gMan.dispose();
+                view = gNotif;
+                
             }
-        }else if (view instanceof insertProgrammer){
+        }
+        
+        else if (view instanceof insertProgrammer){
             insertProgrammer gProg = (insertProgrammer) view;
             if(source.equals(gProg.getBtnBack())){
                 /*
@@ -139,8 +152,15 @@ public class Controller implements ActionListener{
                 String noTelp = gProg.getTextTelp();
                 app.insertProgrammer(nama, ttl, alamat, noTelp, email);
                 gProg.reset();
+                notifBerhasilProgrammer gNotif = new notifBerhasilProgrammer();
+                gNotif.setVisible(true);
+                gNotif.addListener(this);
+                gProg.dispose();
+                view = gNotif;
             }
-        }else if (view instanceof lihatManajer){
+        }
+        
+        else if (view instanceof lihatManajer){
             lihatManajer gLihatManajer = (lihatManajer) view;
             if(source.equals(gLihatManajer.getBtnOk())){
                 /*
@@ -152,7 +172,9 @@ public class Controller implements ActionListener{
                 gLihatManajer.dispose();
                 view = m; 
             }
-        }else if (view instanceof lihatProgrammer){
+        }
+        
+        else if (view instanceof lihatProgrammer){
             lihatProgrammer gLihatProgrammer = (lihatProgrammer) view;
             if(source.equals(gLihatProgrammer.getBtnOk())){
                 /*
@@ -164,7 +186,9 @@ public class Controller implements ActionListener{
                 gLihatProgrammer.dispose();
                 view = m; 
             }
-        }else if(view instanceof menuManajerProyek){
+        }
+        
+        else if(view instanceof menuManajerProyek){
             menuManajerProyek gMenuManajerProyek = (menuManajerProyek) view;
             
             if(source.equals(gMenuManajerProyek.getBtnBack())){
@@ -190,6 +214,7 @@ public class Controller implements ActionListener{
                 /*
                 pindah view updateProyek
                 */
+                namaManager = gMenuManajerProyek.getTextManajerProyek();
                 updateProyek gUpdateProyek = new updateProyek();
                 gUpdateProyek.setVisible(true);
                 gUpdateProyek.addListener(this);
@@ -200,6 +225,12 @@ public class Controller implements ActionListener{
                 pindah view lihatProyek
                 */
                 lihatProyek gLihatProyek = new lihatProyek();
+                
+                namaManager = gMenuManajerProyek.getTextManajerProyek();
+                ManajerProyek manajer = app.cariManajerProyek(namaManager);
+                
+                gLihatProyek.setTxAreaProyek(app.viewProyek(manajer));
+                
                 gLihatProyek.setVisible(true);
                 gLihatProyek.addListener(this);
                 gMenuManajerProyek.dispose();
@@ -213,8 +244,23 @@ public class Controller implements ActionListener{
                 gCariProyek.addListener(this);
                 gMenuManajerProyek.dispose();
                 view = gCariProyek;
+            }else if (source.equals(gMenuManajerProyek.getBtnCek())){
+                /*
+                mengecek Data Manajer
+                */
+                String nmManajer = gMenuManajerProyek.getTextManajerProyek();
+                if(app.cariManajerProyek(nmManajer) == null){                        
+                    gMenuManajerProyek.setTxNotif("Manajer Tidak Ada !");
+                    gMenuManajerProyek.setDisableBtn();  
+                }else {
+                    gMenuManajerProyek.setTxNotif("Manajer Ada !");
+                    gMenuManajerProyek.setDisableTextManajerProyek();
+                    gMenuManajerProyek.setEnableBtn();
+                }
             }
-        }else if(view instanceof menuProgrammer){
+        }
+        
+        else if(view instanceof menuProgrammer){
             menuProgrammer gMenuProgrammer = (menuProgrammer) view;
             if(source.equals(gMenuProgrammer.getBtnLihatTugas())){
                 /*
@@ -243,8 +289,24 @@ public class Controller implements ActionListener{
                 m.addListener(this);
                 gMenuProgrammer.dispose();
                 view = m;
+            }else if(source.equals(gMenuProgrammer.getBtnCek())){
+                /*
+                mengecek programmer
+                */
+                String nmProgrammer = gMenuProgrammer.getTextManajer();
+                if(app.cariProgrammer(nmProgrammer) == null){                        
+                    gMenuProgrammer.setTxNotif("Programmer Tidak Ada !");
+                    gMenuProgrammer.setDisableBtn();  
+                }else {
+                    gMenuProgrammer.setTxNotif("Programmer Ada !");
+                    gMenuProgrammer.setDisableTextProgrammer();
+                    gMenuProgrammer.setEnableBtn();
+                }
+                
             }
-        }else if (view instanceof buatProyek){
+        }
+        
+        else if (view instanceof buatProyek){
             buatProyek gBuatProyek = (buatProyek) view;
             if(source.equals(gBuatProyek.getBtnCancel())){
                 /*
@@ -259,19 +321,26 @@ public class Controller implements ActionListener{
                 /*
                 membuat Proyek
                 */
-                menuManajerProyek gMenuManajerProyek = new menuManajerProyek();
+                //menuManajerProyek gMenuManajerProyek = new menuManajerProyek();
                 app.cariManajerProyek(namaManager);
                 ManajerProyek manajer = app.cariManajerProyek(namaManager);
+                notifBuatProyek gNotif = new notifBuatProyek();
                 
                 String proyek = gBuatProyek.getTextProyek();
                 String perusahaan = gBuatProyek.getTextPerusahaan();
                 try{
                 app.createProyek(manajer, proyek, perusahaan);
+                gNotif.setVisible(true);
+                gNotif.addListener(this);
+                gBuatProyek.dispose();
+                view = gNotif;
                 }catch(NullPointerException e){
                     System.out.println("Manajer Proyek Belum Ada !");
                 }
             }
-        }else if (view instanceof updateProyek){
+        }
+        
+        else if (view instanceof updateProyek){
             updateProyek gUpdateProyek = (updateProyek) view;
             if(source.equals(gUpdateProyek.getBtnCancel())){
                 /*
@@ -282,9 +351,34 @@ public class Controller implements ActionListener{
                 gMenuManajerProyek.addListener(this);
                 gUpdateProyek.dispose();
                 view = gMenuManajerProyek;
+            }if(source.equals(gUpdateProyek.getBtnUpdate())){
+                /*
+                mengupdate proyek
+                */
+                app.cariManajerProyek(namaManager);
+                ManajerProyek manajer = app.cariManajerProyek(namaManager);
+                
+                String pyk = gUpdateProyek.getTxProyek();
+                Proyek proyek = manajer.getProyek(pyk);
+                
+                String status = gUpdateProyek.getCmbBoxStatus();
+                
+                try{
+                    app.updateProyek(manajer, proyek, status);
+                    notifUpdateProyek gNotif = new notifUpdateProyek();
+                    gNotif.setVisible(true);
+                    gNotif.addListener(this);
+                    gUpdateProyek.dispose();
+                    view = gNotif;              
+                }catch(NullPointerException e){
+                    gUpdateProyek.setTxProyekUpdate("Proyek Tidak Ada !");
+                }
+                
             }
             
-        }else if (view instanceof lihatProyek){
+        }
+        
+        else if (view instanceof lihatProyek){
             lihatProyek gLihatProyek = (lihatProyek) view;
             if(source.equals(gLihatProyek.getBtnOk())){
                 /*
@@ -296,7 +390,9 @@ public class Controller implements ActionListener{
                 gLihatProyek.dispose();
                 view = gMenuManajerProyek;
             }
-        }else if (view instanceof cariProyek){
+        }
+        
+        else if (view instanceof cariProyek){
             cariProyek gCariProyek = (cariProyek) view;
             if(source.equals(gCariProyek.getBtnBack())){
                 /*
@@ -313,28 +409,28 @@ public class Controller implements ActionListener{
                 */               
                 String nmProyek = gCariProyek.getTextProyek();
                 ManajerProyek manajer = app.cariManajerProyek(namaManager);
-                try{
-                Proyek nmP = manajer.getProyek(nmProyek);
-                gCariProyek.setTxNotif("Proyek Ada");
-                gCariProyek.setEnableNext();
-                }catch(NullPointerException e){
-                    gCariProyek.setTxNotif("Proyek Tidak ditemukan");
+                nmP = manajer.getProyek(nmProyek);
+                if(nmP == null){
+                    gCariProyek.setTxNotif("Proyek Tidak ditemukan !");
+                }else{
+                    gCariProyek.setTxNotif("Proyek Ada !");
+                    gCariProyek.setDisableTxProyek();
+                    gCariProyek.setEnableNext();
                 }
-                
-            }
-        }else if (view instanceof lihatTugas){
-            lihatTugas gLihatTugas = (lihatTugas) view;
-            if(source.equals(gLihatTugas.getBtnOk())){
+            }else if(source.equals(gCariProyek.getBtnNext())){
                 /*
-                pindah view menuProgrammer
+                pindah view menuProyek
                 */
-                menuProgrammer gMenuProgrammer = new menuProgrammer();
-                gMenuProgrammer.setVisible(true);
-                gMenuProgrammer.addListener(this);
-                gLihatTugas.dispose();
-                view = gMenuProgrammer;
+                menuProyek gMenuProyek = new menuProyek();
+                gMenuProyek.setVisible(true);
+                gMenuProyek.addListener(this);
+                gCariProyek.dispose();
+                view = gMenuProyek;
             }
-        }else if (view instanceof updateTugas){
+                    
+        }
+                
+        else if (view instanceof updateTugas){
             updateTugas gUpdateTugas = (updateTugas) view;
             if(source.equals(gUpdateTugas.getBtnCancel())){
                 /*
@@ -347,6 +443,197 @@ public class Controller implements ActionListener{
                 view = gMenuProgrammer;
             }
         }
+        
+        else if(view instanceof menuProyek){
+            menuProyek gMenuProyek = (menuProyek) view;
+            if(source.equals(gMenuProyek.getBtnTambahTugas())){
+                /*
+                pindah view tambahTugas
+                */
+                tambahTugas gTambahTugas = new tambahTugas();
+                gTambahTugas.setVisible(true);
+                gTambahTugas.addListener(this);
+                gMenuProyek.dispose();
+                view = gTambahTugas;
+            }else if(source.equals(gMenuProyek.getBtnLihatTugas())){
+                /*
+                pindah view lihatTugas
+                */
+                lihatTugas gLihatTugas = new lihatTugas();
+                gLihatTugas.setVisible(true);
+                gLihatTugas.addListener(this);
+                
+                gLihatTugas.setTxAreaTugas(app.viewTugas(nmP));
+                
+                gMenuProyek.dispose();
+                view = gLihatTugas;
+            }else if(source.equals(gMenuProyek.getBtnHapusTugas())){
+                /*
+                pindah view hapusTugas
+                */
+                hapusTugas gHapusTugas = new hapusTugas();
+                gHapusTugas.setVisible(true);
+                gHapusTugas.addListener(this);
+                gMenuProyek.dispose();
+                view = gHapusTugas;
+            }
+        }
+        
+        else if(view instanceof tambahTugas){
+            tambahTugas gTambahTugas = (tambahTugas) view;
+            if(source.equals(gTambahTugas.getBtnBack())){
+                /*
+                pindah view menuProyek
+                */
+                menuProyek gMenuProyek = new menuProyek();
+                gMenuProyek.setVisible(true);
+                gMenuProyek.addListener(this);
+                gTambahTugas.dispose();
+                view = gMenuProyek;
+            }else if(source.equals(gTambahTugas.getBtnAdd())){
+                /*
+                menambah tugas pada proyek
+                */
+                notifTambahTugas gNotif = new notifTambahTugas();
+                
+                String tugas = gTambahTugas.getTxTugas();
+                String deadline = gTambahTugas.getTxDeadline();
+                                
+                app.createTugas(nmP, tugas, deadline);
+                
+                String programmer = gTambahTugas.getTxPelaksana();
+                
+                Programmer pelaksana = app.cariProgrammer(programmer);
+                app.addAnggota(nmP, pelaksana);
+                nmP.getTugas(tugas).setPelaksana(pelaksana);
+                
+                gNotif.setVisible(true);
+                gNotif.addListener(this);
+                gTambahTugas.dispose();
+                view = gNotif;
+            }else if(source.equals(gTambahTugas.getBtnCek())){
+                /*
+                mengecek programmer
+                */
+                String p = gTambahTugas.getTxPelaksana();
+                Programmer programmer = app.cariProgrammer(p);
+                
+                if(programmer == null){
+                    gTambahTugas.setTxNotif("Programmer Tidak ditemukan !");
+                    gTambahTugas.setDisableAdd();
+                }else{
+                    gTambahTugas.setTxNotif("Programmer Ada !");
+                    gTambahTugas.setDisableTxPelaksana();
+                    gTambahTugas.setEnableAdd();
+                }                             
+            }
+            
+        }
+        
+        else if(view instanceof lihatTugas){
+            lihatTugas gLihatTugas = (lihatTugas) view;
+            if(source.equals(gLihatTugas.getBtnOk())){
+                /*
+                pindah view menuProyek
+                */
+                menuProyek gMenuProyek = new menuProyek();
+                gMenuProyek.setVisible(true);
+                gMenuProyek.addListener(this);
+                gLihatTugas.dispose();
+                view = gMenuProyek;
+            }
+        }
+        
+        else if(view instanceof hapusTugas){
+            hapusTugas gHapusTugas = (hapusTugas) view;
+            if(source.equals(gHapusTugas.getBtnHapus())){
+                /*
+                menghapus tugas
+                */
+                String tugas = gHapusTugas.getTxTugas();
+                app.delTugas(nmP, tugas);
+                gHapusTugas.setTxNotif("Data Telah Terhapus !");
+                System.out.println("Data tugas Terhapus....");
+            }else if(source.equals(gHapusTugas.getBtnBack())){
+                /*
+                pindah view menuProyek
+                */
+                menuProyek gMenuProyek = new menuProyek();
+                gMenuProyek.setVisible(true);
+                gMenuProyek.addListener(this);
+                gHapusTugas.dispose();
+                view = gMenuProyek;
+            }
+        }
+        
+        
+        
+        //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv FRAME UNTUK SEMUA NOTIFIKASI vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+        else if(view instanceof notifBuatProyek){
+            notifBuatProyek gNotif = (notifBuatProyek) view;
+            if(source.equals(gNotif.getBtnOk())){
+                menuManajerProyek m = new menuManajerProyek();
+                m.setVisible(true);
+                m.addListener(this);
+                gNotif.dispose();
+                view = m; 
+            }
+        }
+        else if(view instanceof notifBerhasilManajerProyek){
+            notifBerhasilManajerProyek gNotif = (notifBerhasilManajerProyek) view;
+            if(source.equals(gNotif.getBtnOk())){
+                /*
+                pindah view menuManajerProyek
+                */
+                viewMenu m = new viewMenu();
+                m.setVisible(true);
+                m.addListener(this);
+                gNotif.dispose();
+                view = m; 
+            }  
+        }
+        else if(view instanceof notifBerhasilProgrammer){
+            notifBerhasilProgrammer gNotif = (notifBerhasilProgrammer) view;
+            if(source.equals(gNotif.getBtnOk())){
+                /*
+                kembali ke viewMenu
+                */
+                viewMenu m = new viewMenu();
+                m.setVisible(true);
+                m.addListener(this);
+                gNotif.dispose();
+                view = m; 
+            }
+        }
+        else if(view instanceof notifUpdateProyek){
+            notifUpdateProyek gNotif = (notifUpdateProyek) view;
+            if(source.equals(gNotif.getBtnOk())){
+                /*
+                pindah view menuManajerProyek
+                */
+                menuManajerProyek m = new menuManajerProyek();
+                m.setVisible(true);
+                m.addListener(this);
+                gNotif.dispose();
+                view = m; 
+            }
+        }
+        else if(view instanceof notifTambahTugas){
+            notifTambahTugas gNotif = (notifTambahTugas) view;
+            if(source.equals(gNotif.getBtnOk())){
+                /*
+                pindah view menuProyek
+                */
+                menuProyek m = new menuProyek();
+                m.setVisible(true);
+                m.addListener(this);
+                gNotif.dispose();
+                view = m; 
+            }
+        }
+        
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
             
     }
 }

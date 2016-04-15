@@ -117,7 +117,7 @@ public class Application {
         String tmp= "";
         tmp+="Daftar Manajer Proyek  :";
         for(ManajerProyek m : getListManajer()){
-
+            tmp+="\n  ID            : "+m.getId();
             tmp+="\n  Nama          : "+m.getNama();
             tmp+="\n  Tanggal Lahir : "+m.getTtl();
             tmp+="\n  Alamat        : "+m.getAlamat();
@@ -128,11 +128,44 @@ public class Application {
         return tmp;
     }
     
-    public String detilProyek(){
+    public String viewProgrammer(){
         String tmp= "";
-        tmp+="\n Daftar Manajer Proyek  :";
-        //tmp+="\n Nama Proyek : "+nmP.getNama();
-        //tmp+="\n Perusahaan  : "+nmP.getPerusahaan()+"\n";
+        tmp+="Daftar Programmer  :";
+        for(Programmer m : getListProgrammer()){
+            tmp+="\n  ID            : "+m.getId();
+            tmp+="\n  Nama          : "+m.getNama();
+            tmp+="\n  Tanggal Lahir : "+m.getTtl();
+            tmp+="\n  Alamat        : "+m.getAlamat();
+            tmp+="\n  Email         : "+m.getEmail();
+            tmp+="\n  No. Telepon   : "+m.getNoHp();
+            tmp+="\n========================";
+        }
+        return tmp;
+    }
+    
+    public String viewProyek(ManajerProyek manajer){
+        String tmp= "";
+        tmp+="Daftar Proyek  :";
+        for(Proyek proyek : manajer.getArrayProyek()){
+            tmp+="\n  Proyek : "+proyek.getNama();
+            tmp+="\n  Client : "+proyek.getPerusahaan();
+            tmp+="\n  Status : "+proyek.getStatus();
+            tmp+="\n  ============================";
+            tmp+="\n  ";
+        }
+        return tmp;
+    }
+    
+    public String viewTugas(Proyek p){
+        String tmp="";
+        tmp+="Daftar Tugas :";
+        for(Tugas t : p.getArrayTugas()){
+            tmp+="\n  -Tugas : "+t.getNama();
+            tmp+="\n   Pekerja : "+t.getPelaksana().getNama();
+            tmp+="\n   Perusahaan : "+t.getDeadline();
+            tmp+="\n   Progress : "+t.getProgress();
+            tmp+="\n  ============================";
+        }
         return tmp;
     }
 }

@@ -40,6 +40,8 @@ public class menuManajerProyek extends javax.swing.JFrame implements View{
         btnLihatProyek = new javax.swing.JButton();
         btnCariProyek = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnCek = new javax.swing.JButton();
+        txNotif = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +51,7 @@ public class menuManajerProyek extends javax.swing.JFrame implements View{
         jLabel6.setText("Menu Manajer Proyek");
 
         btnBuatProyek.setText("Buat Proyek");
+        btnBuatProyek.setEnabled(false);
         btnBuatProyek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuatProyekActionPerformed(evt);
@@ -56,12 +59,19 @@ public class menuManajerProyek extends javax.swing.JFrame implements View{
         });
 
         btnUpdateProyek.setText("Update Proyek");
+        btnUpdateProyek.setEnabled(false);
 
         btnLihatProyek.setText("Lihat Proyek");
+        btnLihatProyek.setEnabled(false);
 
         btnCariProyek.setText("Cari Proyek");
+        btnCariProyek.setEnabled(false);
 
         btnBack.setText("<< Back");
+
+        btnCek.setText("Cek");
+
+        txNotif.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,27 +80,30 @@ public class menuManajerProyek extends javax.swing.JFrame implements View{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(37, 37, 37)
-                        .addComponent(textManajerProyek)
-                        .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 107, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(113, 113, 113))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addGap(113, 113, 113))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(btnBuatProyek, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnCariProyek, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnLihatProyek, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnUpdateProyek, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(37, 37, 37))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txNotif, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnCek)))
+                            .addGap(37, 37, 37)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(37, 37, 37)
+                        .addComponent(textManajerProyek)
+                        .addGap(37, 37, 37))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,7 +114,11 @@ public class menuManajerProyek extends javax.swing.JFrame implements View{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(textManajerProyek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCek)
+                    .addComponent(txNotif))
+                .addGap(18, 18, 18)
                 .addComponent(btnBuatProyek)
                 .addGap(18, 18, 18)
                 .addComponent(btnUpdateProyek)
@@ -109,7 +126,7 @@ public class menuManajerProyek extends javax.swing.JFrame implements View{
                 .addComponent(btnLihatProyek)
                 .addGap(18, 18, 18)
                 .addComponent(btnCariProyek)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
@@ -130,11 +147,13 @@ public class menuManajerProyek extends javax.swing.JFrame implements View{
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBuatProyek;
     private javax.swing.JButton btnCariProyek;
+    private javax.swing.JButton btnCek;
     private javax.swing.JButton btnLihatProyek;
     private javax.swing.JButton btnUpdateProyek;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField textManajerProyek;
+    private javax.swing.JLabel txNotif;
     // End of variables declaration//GEN-END:variables
 
     public Object getBtnBuatProyek() {
@@ -157,8 +176,34 @@ public class menuManajerProyek extends javax.swing.JFrame implements View{
         return btnBack;
     }
 
+    public Object getBtnCek() {
+        return btnCek;
+    }
+    
     public String getTextManajerProyek() {
         return textManajerProyek.getText();
+    }
+    
+    public void setTxNotif(String s){
+        txNotif.setText(s);
+    }
+    
+    public void setDisableTextManajerProyek(){
+        textManajerProyek.setEditable(false);
+    }
+    
+    public void setEnableBtn(){
+        btnBuatProyek.setEnabled(true);
+        btnCariProyek.setEnabled(true);
+        btnLihatProyek.setEnabled(true);
+        btnUpdateProyek.setEnabled(true);
+    }
+    
+    public void setDisableBtn(){
+        btnBuatProyek.setEnabled(false);
+        btnCariProyek.setEnabled(false);
+        btnLihatProyek.setEnabled(false);
+        btnUpdateProyek.setEnabled(false);
     }
       
     public void addListener(ActionListener e){
@@ -167,6 +212,7 @@ public class menuManajerProyek extends javax.swing.JFrame implements View{
         btnLihatProyek.addActionListener(e);
         btnUpdateProyek.addActionListener(e);
         btnBack.addActionListener(e);
+        btnCek.addActionListener(e);
     }
     
 }

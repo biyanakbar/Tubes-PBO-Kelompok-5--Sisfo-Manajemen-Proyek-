@@ -7,6 +7,7 @@ package view;
 
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -32,7 +33,7 @@ public class lihatTugas extends javax.swing.JFrame implements View{
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txAreaTugas = new javax.swing.JTextArea();
         btnOk = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -40,9 +41,10 @@ public class lihatTugas extends javax.swing.JFrame implements View{
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Daftar Tugas");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txAreaTugas.setEditable(false);
+        txAreaTugas.setColumns(20);
+        txAreaTugas.setRows(5);
+        jScrollPane1.setViewportView(txAreaTugas);
 
         btnOk.setText("Ok");
         btnOk.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +66,7 @@ public class lihatTugas extends javax.swing.JFrame implements View{
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -94,11 +96,15 @@ public class lihatTugas extends javax.swing.JFrame implements View{
     private javax.swing.JButton btnOk;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txAreaTugas;
     // End of variables declaration//GEN-END:variables
 
     public Object getBtnOk() {
         return btnOk;
+    }
+
+    public void setTxAreaTugas(String s) {
+        txAreaTugas.setText(s);
     }
     
     public void addListener(ActionListener e){
