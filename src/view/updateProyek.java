@@ -35,24 +35,17 @@ public class updateProyek extends javax.swing.JFrame implements View{
         jLabel3 = new javax.swing.JLabel();
         btnUpdate = new javax.swing.JButton();
         txProyek = new javax.swing.JTextField();
-        cmbBoxStatus = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnCancel = new javax.swing.JButton();
         txProyekUpdate = new javax.swing.JLabel();
+        CmbBoxStatus = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel3.setText("Status");
 
         btnUpdate.setText("Update");
-
-        cmbBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Done", "On Progress" }));
-        cmbBoxStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbBoxStatusActionPerformed(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Update Proyek");
@@ -84,12 +77,12 @@ public class updateProyek extends javax.swing.JFrame implements View{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txProyekUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txProyek, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                            .addComponent(txProyek, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnCancel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cmbBoxStatus, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(CmbBoxStatus))
                         .addGap(57, 57, 57))))
         );
         layout.setVerticalGroup(
@@ -103,11 +96,11 @@ public class updateProyek extends javax.swing.JFrame implements View{
                     .addComponent(txProyek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txProyekUpdate)
-                .addGap(22, 22, 22)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(cmbBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(CmbBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate)
                     .addComponent(btnCancel))
@@ -117,18 +110,14 @@ public class updateProyek extends javax.swing.JFrame implements View{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmbBoxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBoxStatusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbBoxStatusActionPerformed
-
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CmbBoxStatus;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cmbBoxStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -145,7 +134,7 @@ public class updateProyek extends javax.swing.JFrame implements View{
     }
 
     public String getCmbBoxStatus() {
-        return cmbBoxStatus.getToolTipText();
+        return CmbBoxStatus.getText();
     }
 
     public String getTxProyek() {

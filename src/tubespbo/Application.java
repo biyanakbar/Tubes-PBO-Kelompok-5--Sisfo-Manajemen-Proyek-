@@ -183,7 +183,7 @@ public class Application {
         for(Tugas t : p.getArrayTugas()){
             tmp+="\n  -Tugas : "+t.getNama();
             tmp+="\n   Pekerja : "+t.getPelaksana().getNama();
-            tmp+="\n   Perusahaan : "+t.getDeadline();
+            tmp+="\n   Deadline : "+t.getDeadline();
             tmp+="\n   Progress : "+t.getProgress();
             tmp+="\n  ============================";
         }
