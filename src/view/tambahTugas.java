@@ -53,7 +53,7 @@ public class tambahTugas extends javax.swing.JFrame implements View{
 
         jLabel3.setText("Deadline");
 
-        jLabel4.setText("Programmer");
+        jLabel4.setText("ID Programmer");
 
         btnAdd.setText("Add");
         btnAdd.setEnabled(false);

@@ -1,7 +1,8 @@
 package tubespbo;
 
 public abstract class Orang {
-    private static int id = 0;
+    private static int count;
+    private String id;
     private String nama;
     private String ttl;
     private String alamat;
@@ -9,7 +10,7 @@ public abstract class Orang {
     private String email;
 
     public Orang(String nama, String ttl, String alamat, String noHp, String email) {
-        setId(++id);
+        id = "EMP" + (++count);
         this.nama = nama;
         this.ttl = ttl;
         this.alamat = alamat;
@@ -17,11 +18,7 @@ public abstract class Orang {
         this.email = email;
     }
 
-    public static void setId(int id) {
-        Orang.id = id;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 

@@ -23,9 +23,9 @@ public class Application {
         listProgrammer.add(new Programmer(nama, ttl, alamat, noHp, email));
     }
     
-    public ManajerProyek cariManajerProyek(String nama){
+    public ManajerProyek cariManajerProyek(String id){
         for(ManajerProyek m : listManajer){
-            if(m.getNama().equals(nama)){
+            if(m.getId().equals(id)){
                 return m;
             }
         }
@@ -44,9 +44,9 @@ public class Application {
         return listManajer.get(i);
     }
     
-    public Programmer cariProgrammer (String nama){
+    public Programmer cariProgrammer (String id){
         for(Programmer p : listProgrammer){
-            if(p.getNama().equals(nama)){
+            if(p.getId().equals(id)){
                 return p;
             }
         }
@@ -91,6 +91,27 @@ public class Application {
                 return;
             }
         }
+    }
+    
+    public Tugas cariTugas(Proyek p, String tgs){
+        for(Tugas t : p.getArrayTugas()){
+            if(t.getNama().equals(tgs)){
+                return t;
+            }
+        }
+        return null;
+    }
+    
+    public String detilTugas(Proyek p, String tgs){
+        String tmp = "";
+        for(Tugas t : p.getArrayTugas()){
+            String nama = t.getPelaksana().getNama(); 
+                tmp+="Tugas     : "+t.getNama();   
+                tmp+="\nDeadline  : "+t.getDeadline();
+                tmp+="\nProgress  : "+t.getProgress();
+                tmp+="\nPelaksana : "+t.getPelaksana().getNama();                          
+        }
+        return tmp;
     }
     
     public void delTugas(Proyek p, String nmTgs){
@@ -166,6 +187,37 @@ public class Application {
             tmp+="\n   Progress : "+t.getProgress();
             tmp+="\n  ============================";
         }
+        return tmp;
+    }
+    
+    public String viewAnggota(Proyek nmP){
+        String tmp = "";
+        for(Programmer anggota : nmP.getArrayProgrammer()){
+           tmp+="Nama    : "+anggota.getNama();
+           tmp+="\nNo Telp : "+anggota.getNoHp();
+           tmp+="\n  ============================\n";
+        }     
+        return tmp;
+    }
+    
+    public String viewTugas2(Programmer prog){
+        String tmp="";
+        for(ManajerProyek m1 : getListManajer()){
+                        for(Proyek p : m1.getArrayProyek()){  
+                            for(Tugas t : p.getArrayTugas()){
+                                if (t.getPelaksana() == prog){
+                                    tmp+="- Nama Tugas :"+t.getNama();
+                                    tmp+="\n  Deadline   : "+t.getDeadline();
+                                    tmp+="\n  Progress   : "+t.getProgress();
+                                    tmp+="\n  Proyek : "+p.getNama();
+                                    tmp+="\n  Manajer : "+m1.getNama();
+                                    tmp+="\n  Nama Perusahaan : "+p.getPerusahaan();
+                                    tmp+="\n================================";
+                                    tmp+="\n";
+                                }             
+                            }
+                        }
+                    }
         return tmp;
     }
 }

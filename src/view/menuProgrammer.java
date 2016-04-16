@@ -32,7 +32,7 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
     private void initComponents() {
 
         jLabel6 = new javax.swing.JLabel();
-        textProgrammer = new javax.swing.JTextField();
+        textIdProgrammer = new javax.swing.JTextField();
         btnLihatTugas = new javax.swing.JButton();
         btnUpdateTugas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -51,7 +51,7 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
         btnUpdateTugas.setText("Update Tugas");
         btnUpdateTugas.setEnabled(false);
 
-        jLabel1.setText("Nama Programmer");
+        jLabel1.setText("ID Programmer");
 
         btnBack.setText("<< Back");
 
@@ -68,24 +68,21 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
                 .addComponent(jLabel6)
                 .addGap(113, 113, 113))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnLihatTugas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnUpdateTugas, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
                             .addComponent(btnBack)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(37, 37, 37)
-                                .addComponent(textProgrammer, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txNotif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCek)))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnLihatTugas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnUpdateTugas)
+                                .addComponent(btnCek, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(37, 37, 37)
+                            .addComponent(textIdProgrammer, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txNotif, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,18 +93,18 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(textProgrammer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textIdProgrammer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCek)
-                    .addComponent(txNotif))
-                .addGap(14, 14, 14)
+                .addComponent(txNotif)
+                .addGap(9, 9, 9)
+                .addComponent(btnCek)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLihatTugas)
                 .addGap(18, 18, 18)
                 .addComponent(btnUpdateTugas)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(btnBack)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -124,7 +121,7 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
     private javax.swing.JButton btnUpdateTugas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField textProgrammer;
+    private javax.swing.JTextField textIdProgrammer;
     private javax.swing.JLabel txNotif;
     // End of variables declaration//GEN-END:variables
 
@@ -144,8 +141,8 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
         return btnCek;
     }
 
-    public String getTextManajer() {
-        return textProgrammer.getText();
+    public String getTextProgrammer() {
+        return textIdProgrammer.getText();
     }
     
     public void setTxNotif(String s){
@@ -163,7 +160,7 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
     }
     
     public void setDisableTextProgrammer(){
-        textProgrammer.setEditable(false);
+        textIdProgrammer.setEditable(false);
     }
 
     public void addListener(ActionListener e){

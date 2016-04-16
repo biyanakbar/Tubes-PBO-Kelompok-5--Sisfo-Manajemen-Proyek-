@@ -176,27 +176,22 @@ public class ViewConsole {
             System.out.print("masukkan pilihan : ");
             pil = s1.nextInt();
             switch (pil) {
-                case 1:
-                    System.out.print("Masukkan Nama Manajer Proyek : ");
-                    String m = s2.nextLine();
-                    ManajerProyek m1 = app.cariManajerProyek(m);
-                    try {
-                    for(Proyek p : m1.getArrayProyek()){
-                        System.out.println("Proyek : "+p.getNama());
-                        System.out.println("Manajer : "+m1.getNama());
-                        System.out.println("Nama Perusahhan : "+p.getPerusahaan());
-                        System.out.println("Tugas : ");
-                        for(Tugas t : p.getArrayTugas()){
-                            if (t.getPelaksana() == prog){
-                                System.out.println("- Nama Tugas :"+t.getNama());
-                                System.out.println("  Deadline   : "+t.getDeadline());
-                                System.out.println("  Progress   : "+t.getProgress());
-                            }else{System.out.println("Tidak ada tugas");}                
+                case 1:                    
+                    for(ManajerProyek m1 : app.getListManajer()){
+                        for(Proyek p : m1.getArrayProyek()){  
+                            for(Tugas t : p.getArrayTugas()){
+                                if (t.getPelaksana() == prog){
+                                    System.out.println("- Nama Tugas :"+t.getNama());
+                                    System.out.println("  Deadline   : "+t.getDeadline());
+                                    System.out.println("  Progress   : "+t.getProgress());
+                                    System.out.println("  Proyek : "+p.getNama());
+                                    System.out.println("  Manajer : "+m1.getNama());
+                                    System.out.println("  Nama Perusahaan : "+p.getPerusahaan());
+                                    System.out.println("================================");
+                                    System.out.println("");
+                                }else{System.out.println("Tidak ada tugas");}                
+                            }
                         }
-                    System.out.println(" ");
-                    }
-                    } catch (NullPointerException e){
-                        System.out.println("Nama Manajer Salah !");
                     }
                     break;
                 case 2:

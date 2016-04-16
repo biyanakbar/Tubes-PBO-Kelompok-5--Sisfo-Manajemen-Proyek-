@@ -57,9 +57,9 @@ public class Proyek {
         return perusahaan;
     }
 
-    public Programmer getAnggota(int id) {
+    public Programmer getAnggota(String id) {
         for(Programmer p : arrayProgrammer){
-            if(p.getId() == id){
+            if(p.getId().equals(id)){
                 return p;
             }
         }

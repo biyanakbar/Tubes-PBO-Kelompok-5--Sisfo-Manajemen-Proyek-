@@ -12,12 +12,12 @@ import javax.swing.JButton;
  *
  * @author biyan
  */
-public class lihatAnggota extends javax.swing.JFrame implements View{
+public class lihatTugas2 extends javax.swing.JFrame implements View{
 
     /**
-     * Creates new form lihatAnggot
+     * Creates new form lihatTugas2
      */
-    public lihatAnggota() {
+    public lihatTugas2() {
         initComponents();
     }
 
@@ -30,21 +30,27 @@ public class lihatAnggota extends javax.swing.JFrame implements View{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txAnggota = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txAreaTugas = new javax.swing.JTextArea();
         btnOk = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txAnggota.setColumns(20);
-        txAnggota.setRows(5);
-        jScrollPane1.setViewportView(txAnggota);
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Daftar Anggota");
+        jLabel1.setText("Daftar Tugas");
+
+        txAreaTugas.setEditable(false);
+        txAreaTugas.setColumns(20);
+        txAreaTugas.setRows(5);
+        jScrollPane1.setViewportView(txAreaTugas);
 
         btnOk.setText("Ok");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,23 +83,28 @@ public class lihatAnggota extends javax.swing.JFrame implements View{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOkActionPerformed
+
     /**
      * @param args the command line arguments
      */
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOk;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txAnggota;
+    private javax.swing.JTextArea txAreaTugas;
     // End of variables declaration//GEN-END:variables
 
     public Object getBtnOk() {
         return btnOk;
     }
     
-    public void setTxAnggota(String s){
-        txAnggota.setText(s);
+    public void setTxTugas(String s){
+        txAreaTugas.setText(s);
     }
     
     public void addListener(ActionListener e){

@@ -14,6 +14,7 @@ import tubespbo.Proyek;
 import view.*;
 import javax.swing.JOptionPane;
 import tubespbo.Programmer;
+import tubespbo.Tugas;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Controller implements ActionListener{
     private Application app;
     private View view;
     String namaManager;
+    String namaProgrammer;
     Proyek nmP;
     
     public Controller(Application app) {
@@ -190,7 +192,6 @@ public class Controller implements ActionListener{
         
         else if(view instanceof menuManajerProyek){
             menuManajerProyek gMenuManajerProyek = (menuManajerProyek) view;
-            
             if(source.equals(gMenuManajerProyek.getBtnBack())){
                 /*
                 pindah view viewMenu
@@ -248,8 +249,8 @@ public class Controller implements ActionListener{
                 /*
                 mengecek Data Manajer
                 */
-                String nmManajer = gMenuManajerProyek.getTextManajerProyek();
-                if(app.cariManajerProyek(nmManajer) == null){                        
+                String id = gMenuManajerProyek.getTextManajerProyek();
+                if(app.cariManajerProyek(id) == null){                        
                     gMenuManajerProyek.setTxNotif("Manajer Tidak Ada !");
                     gMenuManajerProyek.setDisableBtn();  
                 }else {
@@ -257,52 +258,6 @@ public class Controller implements ActionListener{
                     gMenuManajerProyek.setDisableTextManajerProyek();
                     gMenuManajerProyek.setEnableBtn();
                 }
-            }
-        }
-        
-        else if(view instanceof menuProgrammer){
-            menuProgrammer gMenuProgrammer = (menuProgrammer) view;
-            if(source.equals(gMenuProgrammer.getBtnLihatTugas())){
-                /*
-                pindah view lihatTugas
-                */
-                lihatTugas gLihatTugas = new lihatTugas();
-                gLihatTugas.setVisible(true);
-                gLihatTugas.addListener(this);
-                gMenuProgrammer.dispose();
-                view = gLihatTugas;
-            }else if(source.equals(gMenuProgrammer.getBtnUpdateTugas())){
-                /*
-                pindah view updateTugas
-                */
-                updateTugas gUpdateTugas = new updateTugas();
-                gUpdateTugas.setVisible(true);
-                gUpdateTugas.addListener(this);
-                gMenuProgrammer.dispose();
-                view = gUpdateTugas;         
-            }else if(source.equals(gMenuProgrammer.getBtnBack())){
-                /*
-                pindah view viewMenu
-                */
-                viewMenu m = new viewMenu();
-                m.setVisible(true);
-                m.addListener(this);
-                gMenuProgrammer.dispose();
-                view = m;
-            }else if(source.equals(gMenuProgrammer.getBtnCek())){
-                /*
-                mengecek programmer
-                */
-                String nmProgrammer = gMenuProgrammer.getTextManajer();
-                if(app.cariProgrammer(nmProgrammer) == null){                        
-                    gMenuProgrammer.setTxNotif("Programmer Tidak Ada !");
-                    gMenuProgrammer.setDisableBtn();  
-                }else {
-                    gMenuProgrammer.setTxNotif("Programmer Ada !");
-                    gMenuProgrammer.setDisableTextProgrammer();
-                    gMenuProgrammer.setEnableBtn();
-                }
-                
             }
         }
         
@@ -428,22 +383,8 @@ public class Controller implements ActionListener{
                 view = gMenuProyek;
             }
                     
-        }
-                
-        else if (view instanceof updateTugas){
-            updateTugas gUpdateTugas = (updateTugas) view;
-            if(source.equals(gUpdateTugas.getBtnCancel())){
-                /*
-                pindah view menuProgrammer
-                */
-                menuProgrammer gMenuProgrammer = new menuProgrammer();
-                gMenuProgrammer.setVisible(true);
-                gMenuProgrammer.addListener(this);
-                gUpdateTugas.dispose();
-                view = gMenuProgrammer;
-            }
-        }
-        
+        }      
+                        
         else if(view instanceof menuProyek){
             menuProyek gMenuProyek = (menuProyek) view;
             if(source.equals(gMenuProyek.getBtnTambahTugas())){
@@ -476,6 +417,27 @@ public class Controller implements ActionListener{
                 gHapusTugas.addListener(this);
                 gMenuProyek.dispose();
                 view = gHapusTugas;
+            }else if(source.equals(gMenuProyek.getBtnLihatAnggota())){
+                /*
+                pindah view lihatAnggota
+                */
+                lihatAnggota gLihatAnggota = new lihatAnggota();
+                gLihatAnggota.setVisible(true);
+                gLihatAnggota.addListener(this);
+                
+                gLihatAnggota.setTxAnggota(app.viewAnggota(nmP));
+                
+                gMenuProyek.dispose();
+                view = gLihatAnggota;      
+            }else if(source.equals(gMenuProyek.getBtnBack())){
+                /*
+                pindah view menuManajerProyek
+                */
+                cariProyek gcariProyek = new cariProyek();
+                gcariProyek.setVisible(true);
+                gcariProyek.addListener(this);
+                gMenuProyek.dispose();
+                view = gcariProyek;
             }
         }
         
@@ -526,8 +488,7 @@ public class Controller implements ActionListener{
                     gTambahTugas.setDisableTxPelaksana();
                     gTambahTugas.setEnableAdd();
                 }                             
-            }
-            
+            }            
         }
         
         else if(view instanceof lihatTugas){
@@ -563,9 +524,134 @@ public class Controller implements ActionListener{
                 gMenuProyek.addListener(this);
                 gHapusTugas.dispose();
                 view = gMenuProyek;
+            }else if(source.equals(gHapusTugas.getBtnCari())){
+                /*
+                mencari tugas
+                */
+                String tugas = gHapusTugas.getTxTugas();
+                gHapusTugas.setTxDetilTugas(app.detilTugas(nmP, tugas));
+                
+                Tugas tgs = app.cariTugas(nmP, gHapusTugas.getTxTugas());
+                
+                if(tgs == null){
+                    gHapusTugas.setTxDetilTugas("Tugas Tidak Ada !");
+                }else{
+                    gHapusTugas.setTxDetilTugas(app.detilTugas(nmP, tugas));
+                    gHapusTugas.setDisableTxTugas();
+                    gHapusTugas.setEnableBtnHapus();
+                }
             }
         }
         
+        else if(view instanceof lihatAnggota){
+            lihatAnggota gLihatAnggota = (lihatAnggota) view;
+            if(source.equals(gLihatAnggota.getBtnOk())){
+                menuProyek gMenuProyek = new menuProyek();
+                gMenuProyek.setVisible(true);
+                gMenuProyek.addListener(this);
+                gLihatAnggota.dispose();
+                view = gMenuProyek;
+            }
+        }
+        
+        else if(view instanceof menuProgrammer){
+            menuProgrammer gMenuProgrammer = (menuProgrammer) view;
+            if(source.equals(gMenuProgrammer.getBtnLihatTugas())){
+                /*
+                pindah view lihatTugas
+                */
+                lihatTugas2 gLihatTugas2 = new lihatTugas2();
+                gLihatTugas2.setVisible(true);
+                gLihatTugas2.addListener(this);
+                namaProgrammer = gMenuProgrammer.getTextProgrammer();
+                
+                Programmer nmProg = app.cariProgrammer(namaProgrammer);
+                
+                gLihatTugas2.setTxTugas(app.viewTugas2(nmProg));
+                
+                gMenuProgrammer.dispose();
+                view = gLihatTugas2;
+            }else if(source.equals(gMenuProgrammer.getBtnUpdateTugas())){
+                /*
+                pindah view updateTugas
+                */
+                updateTugas gUpdateTugas = new updateTugas();
+                gUpdateTugas.setVisible(true);
+                gUpdateTugas.addListener(this);
+                gMenuProgrammer.dispose();
+                view = gUpdateTugas;         
+            }else if(source.equals(gMenuProgrammer.getBtnBack())){
+                /*
+                pindah view viewMenu
+                */
+                viewMenu m = new viewMenu();
+                m.setVisible(true);
+                m.addListener(this);
+                gMenuProgrammer.dispose();
+                view = m;
+            }else if(source.equals(gMenuProgrammer.getBtnCek())){
+                /*
+                mengecek programmer
+                */
+                String id = gMenuProgrammer.getTextProgrammer();
+                if(app.cariProgrammer(id) == null){                        
+                    gMenuProgrammer.setTxNotif("Programmer Tidak Ada !");
+                    gMenuProgrammer.setDisableBtn();  
+                }else {
+                    gMenuProgrammer.setTxNotif("Programmer Ada !");
+                    gMenuProgrammer.setDisableTextProgrammer();
+                    gMenuProgrammer.setEnableBtn();
+                } 
+            }
+        }
+        
+        else if(view instanceof lihatTugas2){
+            lihatTugas2 gLihatTugas2 = (lihatTugas2) view;
+            if(source.equals(gLihatTugas2.getBtnOk())){
+                /*
+                pindah view menuProgrammer
+                */
+                menuProgrammer gMenuProgrammer = new menuProgrammer();
+                gMenuProgrammer.setVisible(true);
+                gMenuProgrammer.addListener(this);
+                gLihatTugas2.dispose();
+                view = gMenuProgrammer;
+            }
+        }
+        
+        else if (view instanceof updateTugas){
+            updateTugas gUpdateTugas = (updateTugas) view;
+            if(source.equals(gUpdateTugas.getBtnCancel())){
+                /*
+                pindah view menuProgrammer
+                */
+                menuProgrammer gMenuProgrammer = new menuProgrammer();
+                gMenuProgrammer.setVisible(true);
+                gMenuProgrammer.addListener(this);
+                gUpdateTugas.dispose();
+                view = gMenuProgrammer;
+            }else if(source.equals(gUpdateTugas.getBtnUpdate())){
+                /*
+                mengupdate Tugas
+                */
+                String id = gUpdateTugas.getTxManagerProyek();
+                ManajerProyek manager = app.cariManajerProyek(id);
+                
+                String p = gUpdateTugas.getTxProyek();
+                Proyek pyk = manager.getProyek(p);
+                
+                String t = gUpdateTugas.getTxTugas();
+                Tugas tgs = pyk.getTugas(t);
+                
+                String progress = gUpdateTugas.getTxProgress();
+                
+                Programmer prog = app.cariProgrammer(namaProgrammer);
+                
+                app.updateProgress(prog, tgs, progress);
+                
+                gUpdateTugas.setTxNotif("Tugas Telah di Update !");   
+            }
+        }
         
         
         //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv FRAME UNTUK SEMUA NOTIFIKASI vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -630,8 +716,7 @@ public class Controller implements ActionListener{
                 gNotif.dispose();
                 view = m; 
             }
-        }
-        
+        }                
         //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
             
