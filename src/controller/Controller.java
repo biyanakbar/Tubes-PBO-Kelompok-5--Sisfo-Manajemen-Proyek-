@@ -634,22 +634,26 @@ public class Controller implements ActionListener{
                 /*
                 mengupdate Tugas
                 */
-                String id = gUpdateTugas.getTxManagerProyek();
-                ManajerProyek manager = app.cariManajerProyek(id);
-                
-                String p = gUpdateTugas.getTxProyek();
-                Proyek pyk = manager.getProyek(p);
-                
-                String t = gUpdateTugas.getTxTugas();
-                Tugas tgs = pyk.getTugas(t);
-                
-                String progress = gUpdateTugas.getTxProgress();
-                
-                Programmer prog = app.cariProgrammer(namaProgrammer);
-                
-                app.updateProgress(prog, tgs, progress);
-                
-                gUpdateTugas.setTxNotif("Tugas Telah di Update !");   
+                try{
+                    String id = gUpdateTugas.getTxManagerProyek();
+                    ManajerProyek manager = app.cariManajerProyek(id);
+
+                    String p = gUpdateTugas.getTxProyek();
+                    Proyek pyk = manager.getProyek(p);
+
+                    String t = gUpdateTugas.getTxTugas();
+                    Tugas tgs = pyk.getTugas(t);
+
+                    String progress = gUpdateTugas.getTxProgress();
+
+                    Programmer prog = app.cariProgrammer(namaProgrammer);
+                    
+                    app.updateProgress(prog, tgs, progress);
+                    gUpdateTugas.setTxNotif("Tugas Telah di Update !");
+                }catch(NullPointerException e){
+                    gUpdateTugas.setTxNotif("Data Masukkan Salah !");
+                }
+                                
             }
         }
         
