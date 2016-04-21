@@ -15,12 +15,12 @@ public class Application {
     private ArrayList<Programmer> listProgrammer = new ArrayList();
     private ArrayList<ManajerProyek> listManajer = new ArrayList();
     
-    public void insertManajerProyek (String nama, String ttl, String alamat, String noHp, String email){
-        listManajer.add(new ManajerProyek(nama, ttl, alamat, noHp, email));
+    public void insertManajerProyek (String nama, String ttl, String alamat, String noHp, String email, String pass){
+        listManajer.add(new ManajerProyek(nama, ttl, alamat, noHp, email, pass));
     }
     
-    public void insertProgrammer (String nama, String ttl, String alamat, String noHp, String email){
-        listProgrammer.add(new Programmer(nama, ttl, alamat, noHp, email));
+    public void insertProgrammer (String nama, String ttl, String alamat, String noHp, String email, String pass){
+        listProgrammer.add(new Programmer(nama, ttl, alamat, noHp, email, pass));
     }
     
     public ManajerProyek cariManajerProyek(String id){

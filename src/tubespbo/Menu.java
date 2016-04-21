@@ -46,8 +46,9 @@ public class Menu {
                     String noHp = s2.nextLine();
                     System.out.print("Masukkan Email : ");
                     String email = s2.nextLine();
-                    //int i = Integer.parseInt(nama);
-                    app.insertManajerProyek(nama, ttl, alamat, noHp, email);
+                    System.out.print("Masukkan Password : ");
+                    String pass = s2.nextLine();
+                    app.insertManajerProyek(nama, ttl, alamat, noHp, email, pass);
                     break;
                 case 2:
                     System.out.print("Masukkan Nama : ");
@@ -60,7 +61,9 @@ public class Menu {
                     String noHp2 = s2.nextLine();
                     System.out.print("Masukkan Email : ");
                     String email2 = s2.nextLine();
-                    app.insertProgrammer(nama2, ttl2, alamat2, noHp2, email2);
+                    System.out.print("Masukkan Password : ");
+                    String pass2 = s2.nextLine();
+                    app.insertProgrammer(nama2, ttl2, alamat2, noHp2, email2, pass2);
                     break;
                 case 3:
                     System.out.println("Daftar Manajer Proyek  :");

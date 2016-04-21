@@ -8,14 +8,16 @@ public abstract class Orang {
     private String alamat;
     private String noHp;
     private String email;
+    private String pass;
 
-    public Orang(String nama, String ttl, String alamat, String noHp, String email) {
+    public Orang(String nama, String ttl, String alamat, String noHp, String email, String pass) {
         id = "EMP" + (++count);
         this.nama = nama;
         this.ttl = ttl;
         this.alamat = alamat;
         this.noHp = noHp;
         this.email = email;
+        this.pass = pass;
     }
 
     public String getId() {
@@ -40,5 +42,9 @@ public abstract class Orang {
 
     public String getEmail() {
         return email;
+    }
+    
+    public String getPass(){
+        return pass;
     }
 }

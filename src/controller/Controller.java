@@ -120,15 +120,15 @@ public class Controller implements ActionListener{
                 String ttl = gMan.getTextTTL();
                 String email = gMan.getTextEmail();
                 String noTelp = gMan.getTextTelp();
-
-                app.insertManajerProyek(nama, ttl, alamat, noTelp, email);
+                String pass = gMan.getTxPass();
+                
+                app.insertManajerProyek(nama, ttl, alamat, noTelp, email, pass);
                 gMan.reset();
                 notifBerhasilManajerProyek gNotif = new notifBerhasilManajerProyek();
                 gNotif.setVisible(true);
                 gNotif.addListener(this);
                 gMan.dispose();
                 view = gNotif;
-                
             }
         }
         
@@ -152,7 +152,9 @@ public class Controller implements ActionListener{
                 String ttl = gProg.getTextTTL();
                 String email = gProg.getTextEmail();
                 String noTelp = gProg.getTextTelp();
-                app.insertProgrammer(nama, ttl, alamat, noTelp, email);
+                String pass = gProg.getTxPass();
+                
+                app.insertProgrammer(nama, ttl, alamat, noTelp, email, pass);
                 gProg.reset();
                 notifBerhasilProgrammer gNotif = new notifBerhasilProgrammer();
                 gNotif.setVisible(true);
@@ -250,13 +252,16 @@ public class Controller implements ActionListener{
                 mengecek Data Manajer
                 */
                 String id = gMenuManajerProyek.getTextManajerProyek();
-                if(app.cariManajerProyek(id) == null){                        
-                    gMenuManajerProyek.setTxNotif("Manajer Tidak Ada !");
-                    gMenuManajerProyek.setDisableBtn();  
-                }else {
-                    gMenuManajerProyek.setTxNotif("Manajer Ada !");
+                String pass = gMenuManajerProyek.getTxPass();
+                ManajerProyek m = app.cariManajerProyek(id);
+                if((m != null) && (m.getPass().equals(pass))){                        
+                    gMenuManajerProyek.setTxNotif("Berhasil !");
                     gMenuManajerProyek.setDisableTextManajerProyek();
+                    gMenuManajerProyek.setDisableTxPass();
                     gMenuManajerProyek.setEnableBtn();
+                }else {
+                    gMenuManajerProyek.setTxNotif("ID dan Password Salah !");
+                    gMenuManajerProyek.setDisableBtn();
                 }
             }
         }
@@ -594,13 +599,17 @@ public class Controller implements ActionListener{
                 mengecek programmer
                 */
                 String id = gMenuProgrammer.getTextProgrammer();
-                if(app.cariProgrammer(id) == null){                        
-                    gMenuProgrammer.setTxNotif("Programmer Tidak Ada !");
-                    gMenuProgrammer.setDisableBtn();  
-                }else {
-                    gMenuProgrammer.setTxNotif("Programmer Ada !");
+                String pass = gMenuProgrammer.getTxPass();
+                Programmer p = app.cariProgrammer(id);
+                
+                if((p != null) && (p.getPass().equals(pass))){                        
+                    gMenuProgrammer.setTxNotif("Berhasil !");
                     gMenuProgrammer.setDisableTextProgrammer();
+                    gMenuProgrammer.setDisableTxPass();
                     gMenuProgrammer.setEnableBtn();
+                }else {
+                    gMenuProgrammer.setTxNotif("ID dan Password Salah !");
+                    gMenuProgrammer.setDisableBtn(); 
                 } 
             }
         }

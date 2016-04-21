@@ -10,8 +10,8 @@ public class ManajerProyek extends Orang{
     private ArrayList<Proyek> arrayProyek;
     private int nProyek;
 
-    public ManajerProyek(String nama, String ttl, String alamat, String noHp, String email) {
-        super(nama, ttl, alamat, noHp, email);
+    public ManajerProyek(String nama, String ttl, String alamat, String noHp, String email, String pass) {
+        super(nama, ttl, alamat, noHp, email, pass);
         arrayProyek = new ArrayList<>();
         nProyek = 0;
     }  

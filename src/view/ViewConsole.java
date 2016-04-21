@@ -54,8 +54,9 @@ public class ViewConsole {
                     String noHp = s2.nextLine();
                     System.out.print("Masukkan Email : ");
                     String email = s2.nextLine();
-                    //int i = Integer.parseInt(nama);
-                    app.insertManajerProyek(nama, ttl, alamat, noHp, email);
+                    System.out.print("Masukkan Password : ");
+                    String pass = s2.nextLine();
+                    app.insertManajerProyek(nama, ttl, alamat, noHp, email, pass);
                     break;
                 case 2:
                     System.out.print("Masukkan Nama : ");
@@ -68,7 +69,9 @@ public class ViewConsole {
                     String noHp2 = s2.nextLine();
                     System.out.print("Masukkan Email : ");
                     String email2 = s2.nextLine();
-                    app.insertProgrammer(nama2, ttl2, alamat2, noHp2, email2);
+                    System.out.print("Masukkan Password : ");
+                    String pass2 = s2.nextLine();
+                    app.insertProgrammer(nama2, ttl2, alamat2, noHp2, email2, pass2);
                     break;
                 case 3:
                     System.out.println(app.viewManager());
@@ -99,7 +102,7 @@ public class ViewConsole {
     
     public void MenuManajer(){
         try{
-        System.out.print("Masukkan Nama Manajer : ");
+        System.out.print("Masukkan ID Manajer : ");
         String nmManajer = s2.nextLine();
         if (app.cariManajerProyek(nmManajer).getNama().equals(nmManajer)){
         ManajerProyek manajer = app.cariManajerProyek(nmManajer);   //Biar dicari dulu bagaimana ???
@@ -164,7 +167,7 @@ public class ViewConsole {
     }
     
     public void MenuProgrammer(){
-        System.out.print("Masukkan Nama Programmer : ");
+        System.out.print("Masukkan ID Programmer : ");
         String p1 = s2.nextLine();
         Programmer prog = app.cariProgrammer(p1);
         int pil;
