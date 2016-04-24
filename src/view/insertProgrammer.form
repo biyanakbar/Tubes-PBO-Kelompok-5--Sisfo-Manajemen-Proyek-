@@ -60,9 +60,9 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txPass" max="32767" attributes="0"/>
                                   <Component id="textEmail" alignment="0" max="32767" attributes="0"/>
                                   <Component id="textTelp" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txPass" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -192,7 +192,7 @@
         <Property name="text" type="java.lang.String" value="Password"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txPass">
+    <Component class="javax.swing.JPasswordField" name="txPass">
     </Component>
   </SubComponents>
 </Form>

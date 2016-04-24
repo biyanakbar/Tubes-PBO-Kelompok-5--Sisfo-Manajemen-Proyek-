@@ -42,8 +42,8 @@ public class menuManajerProyek extends javax.swing.JFrame implements View{
         btnBack = new javax.swing.JButton();
         btnCek = new javax.swing.JButton();
         txNotif = new javax.swing.JLabel();
-        txPass = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        txPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,7 +111,7 @@ public class menuManajerProyek extends javax.swing.JFrame implements View{
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnBack)
-                            .addComponent(txNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -139,7 +139,7 @@ public class menuManajerProyek extends javax.swing.JFrame implements View{
                 .addComponent(btnLihatProyek)
                 .addGap(18, 18, 18)
                 .addComponent(btnCariProyek)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
@@ -168,7 +168,7 @@ public class menuManajerProyek extends javax.swing.JFrame implements View{
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField textIdManajerProyek;
     private javax.swing.JLabel txNotif;
-    private javax.swing.JTextField txPass;
+    private javax.swing.JPasswordField txPass;
     // End of variables declaration//GEN-END:variables
 
     public Object getBtnBuatProyek() {

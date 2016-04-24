@@ -40,7 +40,7 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
         btnCek = new javax.swing.JButton();
         txNotif = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txPass = new javax.swing.JTextField();
+        txPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +62,12 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
         txNotif.setText(" ");
 
         jLabel2.setText("Password");
+
+        txPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txPassActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,6 +128,10 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txPassActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -136,7 +146,7 @@ public class menuProgrammer extends javax.swing.JFrame implements View{
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField textIdProgrammer;
     private javax.swing.JLabel txNotif;
-    private javax.swing.JTextField txPass;
+    private javax.swing.JPasswordField txPass;
     // End of variables declaration//GEN-END:variables
 
     public Object getBtnLihatTugas() {

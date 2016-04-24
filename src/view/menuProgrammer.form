@@ -137,7 +137,10 @@
         <Property name="text" type="java.lang.String" value="Password"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txPass">
+    <Component class="javax.swing.JPasswordField" name="txPass">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txPassActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

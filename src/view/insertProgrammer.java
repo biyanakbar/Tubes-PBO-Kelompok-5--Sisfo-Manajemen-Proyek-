@@ -45,7 +45,7 @@ public class insertProgrammer extends javax.swing.JFrame implements View{
         jLabel3 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        txPass = new javax.swing.JTextField();
+        txPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,9 +112,9 @@ public class insertProgrammer extends javax.swing.JFrame implements View{
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txPass)
                                     .addComponent(textEmail)
-                                    .addComponent(textTelp))))
+                                    .addComponent(textTelp)
+                                    .addComponent(txPass))))
                         .addGap(31, 31, 31))))
         );
         layout.setVerticalGroup(
@@ -180,7 +180,7 @@ public class insertProgrammer extends javax.swing.JFrame implements View{
     private javax.swing.JTextField textNama;
     private javax.swing.JTextField textTTL;
     private javax.swing.JTextField textTelp;
-    private javax.swing.JTextField txPass;
+    private javax.swing.JPasswordField txPass;
     // End of variables declaration//GEN-END:variables
 
     public Object getBtnBack() {
