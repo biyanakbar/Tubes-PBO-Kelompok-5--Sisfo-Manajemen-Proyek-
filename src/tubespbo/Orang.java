@@ -14,7 +14,7 @@ public abstract class Orang {
         id = "EMP" + (++count);
         this.nama = nama;
         this.ttl = ttl;
-        this.alamat = alamat;
+        this.alamat = alamat+"we";
         this.noHp = noHp;
         this.email = email;
         this.pass = pass;
